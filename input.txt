@@ -1,0 +1,21 @@
+/* Simple test program */
+
+var x int = 5;
+var y int = 10;
+
+/* Test INC */
+INC x;
+
+/* Test print */
+print(x);
+
+/* Test ADD */
+ADD y x y;
+print(y);
+
+/* Test if statement */
+if (x > 5) {
+    print(100);
+} else {
+    print(200);
+}

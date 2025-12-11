@@ -1,0 +1,32 @@
+/* Example 2: Control flow - if/else statements */
+
+var x int = 10;
+var y int = 5;
+
+/* Simple if-else */
+if (x > y) {
+    print(100);
+} else {
+    print(200);
+}
+
+/* Nested if with else if */
+var score int = 85;
+
+if (score > 90) {
+    print(1);
+} else if (score > 80) {
+    print(2);
+} else if (score > 70) {
+    print(3);
+} else {
+    print(4);
+}
+
+/* Complex condition with && */
+var a int = 15;
+var b int = 20;
+
+if (a > 10 && b > 15) {
+    print(999);
+}

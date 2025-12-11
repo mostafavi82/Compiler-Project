@@ -1,0 +1,18 @@
+/* Example 3: For loop */
+
+var sum int = 0;
+var i int = 0;
+
+/* Calculate sum from 1 to 10 */
+for (int i = 1; i < 11; i++) {
+    PLE sum i;
+}
+
+print(sum);
+
+/* Countdown */
+var countdown int = 10;
+
+for (int j = 10; j > 0; j--) {
+    print(j);
+}

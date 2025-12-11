@@ -1,0 +1,30 @@
+/* Example 1: Basic arithmetic and special operations */
+
+var a int = 10;
+var b int = 20;
+var c int = 0;
+
+/* Test ADD operation: c = a + b */
+ADD c a b;
+print(c);
+
+/* Test SUB operation: c = b - a */
+SUB c b a;
+print(c);
+
+/* Test MUL operation: c = a * 3 */
+var three int = 3;
+MUL c a three;
+print(c);
+
+/* Test INC and DEC */
+INC a;
+print(a);
+
+DEC b;
+print(b);
+
+/* Test PLE: a = a + 5 */
+var five int = 5;
+PLE a five;
+print(a);
