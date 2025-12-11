@@ -128,7 +128,7 @@ Declaration *Parser::parseDec()
 
         // Check for initialization
         Expr *E = nullptr;
-        if (Tok.is(Token::equal))
+        if (Tok.is(Token::assign))
         {
             advance();
             E = parseExpr();
@@ -165,7 +165,7 @@ Declaration *Parser::parseDec()
 
         // Parse initialization value
         Expr *E = nullptr;
-        if (Tok.is(Token::equal))
+        if (Tok.is(Token::assign))
         {
             advance();
             E = parseExpr();
