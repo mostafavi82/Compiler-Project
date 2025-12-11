@@ -91,11 +91,26 @@ Declaration *Parser::parseDec()
 {
     DataType type = DataType::Unknown;
 
-    // Parse type
+    // Parse: var name type = value; OR type name = value;
+    bool hasVar = false;
     if (Tok.is(Token::KW_var))
     {
+        hasVar = true;
         advance();
-        // After 'var', expect type keyword
+    }
+
+    // If we have 'var', next is identifier, then type
+    // If no 'var', next is type, then identifier
+    if (hasVar)
+    {
+        // Syntax: var name type = value;
+        if (!expect(Token::ident))
+            return nullptr;
+
+        llvm::StringRef varName = Tok.getText();
+        advance();
+
+        // Now expect type
         if (Tok.is(Token::KW_int))
             type = DataType::Int;
         else if (Tok.is(Token::KW_bool))
@@ -110,82 +125,56 @@ Declaration *Parser::parseDec()
             return nullptr;
         }
         advance();
-    }
-    else if (Tok.is(Token::KW_int))
-    {
-        type = DataType::Int;
-        advance();
-    }
-    else if (Tok.is(Token::KW_bool))
-    {
-        type = DataType::Bool;
-        advance();
-    }
-    else if (Tok.is(Token::KW_float))
-    {
-        type = DataType::Float;
-        advance();
-    }
-    else if (Tok.is(Token::KW_array))
-    {
-        type = DataType::Array;
-        advance();
+
+        // Check for initialization
+        Expr *E = nullptr;
+        if (Tok.is(Token::equal))
+        {
+            advance();
+            E = parseExpr();
+        }
+
+        if (!consume(Token::semicolon))
+            return new Declaration(varName, type, E);
+        return nullptr;
     }
     else
     {
-        error();
-        return nullptr;
-    }
-
-    // Parse variable names
-    llvm::SmallVector<llvm::StringRef, 8> Vars;
-    llvm::SmallVector<Expr *, 8> Values;
-
-    if (!Tok.is(Token::ident))
-    {
-        error();
-        return nullptr;
-    }
-
-    Vars.push_back(Tok.getText());
-    advance();
-
-    // Parse multiple variables
-    while (Tok.is(Token::comma))
-    {
-        advance();
-        if (!Tok.is(Token::ident))
+        // Syntax: type name = value;
+        if (Tok.is(Token::KW_int))
+            type = DataType::Int;
+        else if (Tok.is(Token::KW_bool))
+            type = DataType::Bool;
+        else if (Tok.is(Token::KW_float))
+            type = DataType::Float;
+        else if (Tok.is(Token::KW_array))
+            type = DataType::Array;
+        else
         {
             error();
             return nullptr;
         }
-        Vars.push_back(Tok.getText());
         advance();
-    }
 
-    // Parse initialization values
-    if (Tok.is(Token::assign))
-    {
-        advance();
-        Expr *E = parseExpr();
-        if (!E)
+        // Parse variable name
+        if (!expect(Token::ident))
             return nullptr;
-        Values.push_back(E);
 
-        while (Tok.is(Token::comma))
+        llvm::StringRef varName = Tok.getText();
+        advance();
+
+        // Parse initialization value
+        Expr *E = nullptr;
+        if (Tok.is(Token::equal))
         {
             advance();
             E = parseExpr();
-            if (!E)
-                return nullptr;
-            Values.push_back(E);
         }
-    }
 
-    if (consume(Token::semicolon))
+        if (!consume(Token::semicolon))
+            return new Declaration(varName, type, E);
         return nullptr;
-
-    return new Declaration(type, Vars, Values);
+    }
 }
 
 Assignment *Parser::parseAssign()

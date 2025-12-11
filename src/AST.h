@@ -119,6 +119,15 @@ class Declaration : public Program
   DataType Type;
 
 public:
+  // Constructor for single variable declaration
+  Declaration(llvm::StringRef Var, DataType Type, Expr *Value)
+    : Type(Type) {
+    Vars.push_back(Var);
+    if (Value)
+      Values.push_back(Value);
+  }
+
+  // Constructor for multiple variable declarations
   Declaration(DataType Type, llvm::SmallVector<llvm::StringRef, 8> Vars, llvm::SmallVector<Expr *, 8> Values)
     : Type(Type), Vars(Vars), Values(Values) {}
 
