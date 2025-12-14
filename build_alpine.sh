@@ -1,6 +1,9 @@
 #!/bin/sh
 # Build script for Alpine Linux (Docker Desktop WSL)
 
+# Set PATH to include /sbin
+export PATH="/sbin:/usr/sbin:$PATH"
+
 echo "======================================"
 echo "Building Compiler Project with LLVM"
 echo "======================================"
@@ -8,7 +11,7 @@ echo ""
 
 # Install dependencies
 echo "Installing dependencies..."
-apk add cmake clang llvm make g++ --quiet
+/sbin/apk add cmake clang llvm make g++ --quiet
 
 if [ $? -ne 0 ]; then
     echo "Failed to install dependencies"
