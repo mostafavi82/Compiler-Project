@@ -1,0 +1,86 @@
+/* Final comprehensive test */
+
+/* Basic declarations */
+var x int = 2;
+var y float = 2.2;
+var z bool = true;
+var b int;
+
+/* Simple assignment */
+x = 3;
+b = 20;
+
+/* Arithmetic operations */
+ADD b x x;
+print(b);
+
+MUL b b x;
+print(b);
+
+SUB b b x;
+print(b);
+
+DIV x x x;
+print(x);
+
+x = 2;
+MOD b x x;
+print(b);
+
+b = 20;
+
+/* INC/DEC */
+INC b;
+print(b);
+
+DEC b;
+print(b);
+
+x = 2;
+
+/* PLE/MIE */
+PLE b x;
+print(b);
+
+MIE b x;
+print(b);
+
+/* Bool operations */
+var s bool = false;
+var d bool;
+
+OR d s z;
+AND d s z;
+
+/* If/else */
+if (x > 3) {
+    print(x);
+} else {
+    INC x;
+    print(x);
+}
+
+/* else-if */
+if (s) {
+    print(b);
+} else if (d) {
+    INC b;
+    print(b);
+} else {
+    INC b;
+    INC b;
+    print(b);
+}
+
+/* For loop */
+x = 0;
+for (int i = 0; i < 9; i++) {
+    INC x;
+}
+print(x);
+
+/* Comments */
+/*comment_for_ var a int =2 ; */
+
+x = 2;
+print(x);

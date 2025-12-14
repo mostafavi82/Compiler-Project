@@ -1,0 +1,23 @@
+/* Test arrays */
+array a = [2, 3, 5];
+print(2);
+
+/* Test foreach */
+foreach(num in a) {
+    print(num);
+}
+
+/* Test function calls */
+var x int = 2;
+var f float = to_float(x);
+var l int = length(a);
+print(l);
+
+var m int = max(a);
+print(m);
+
+/* Test match */
+match x {
+  2 -> print(100),
+  _ -> print(200)
+}
