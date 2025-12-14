@@ -1,0 +1,66 @@
+/* Test of implemented features */
+
+var x int = 2;
+var y int = 2;
+var z bool = true;
+var b int = 0;
+
+/* Arithmetic operations */
+ADD b x x;
+print(b);
+
+MUL b b x;
+print(b);
+
+SUB b b x;
+print(b);
+
+DIV x x x;
+print(x);
+
+/* Reset x */
+var x2 int = 2;
+
+MOD b x2 x2;
+print(b);
+
+/* INC/DEC */
+var c int = 20;
+INC c;
+print(c);
+
+DEC c;
+print(c);
+
+/* PLE/MIE */
+PLE c x2;
+print(c);
+
+MIE c x2;
+print(c);
+
+/* If/else */
+var d int = 5;
+if (d > 3) {
+    print(d);
+} else {
+    INC d;
+    print(d);
+}
+
+/* else-if */
+var score int = 85;
+if (score > 90) {
+    print(1);
+} else if (score > 80) {
+    print(2);
+} else {
+    print(3);
+}
+
+/* For loop */
+var counter int = 0;
+for (int i = 0; i < 9; i++) {
+    INC counter;
+}
+print(counter);
