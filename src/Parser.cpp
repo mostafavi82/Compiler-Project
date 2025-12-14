@@ -104,7 +104,7 @@ Declaration *Parser::parseDec()
     if (hasVar)
     {
         // Syntax: var name type = value;
-        if (!expect(Token::ident))
+        if (expect(Token::ident))
             return nullptr;
 
         llvm::StringRef varName = Tok.getText();
@@ -157,7 +157,7 @@ Declaration *Parser::parseDec()
         advance();
 
         // Parse variable name
-        if (!expect(Token::ident))
+        if (expect(Token::ident))
             return nullptr;
 
         llvm::StringRef varName = Tok.getText();
